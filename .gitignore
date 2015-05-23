@@ -1,0 +1,15 @@
+*.pyc
+__pycache__
+*~
+
+networkx/addons/metis/build/*
+
+# Generated when 'python setup.py build_clib'
+# and 'python setup.py build-ext --inplace'
+networkx/addons/metis/_metis.so
+networkx/addons/metis/_metis.*.so
+_metis.c
+
+# Sublime Text project files
+*.sublime-project
+*.sublime-workspace
