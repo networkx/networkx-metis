@@ -1,0 +1,75 @@
+THIS PROGRAM DEPENDS UPON THE FOLLOWING WORKS WHICH ARE LICENSED UNDER
+GNU Lesser General Public License :
+--------------------
+* src/GKlib/getopt.c
+  
+  file:  getopt.c
+  brief: Command line parsing 
+
+  This file contains a implementation of GNU's Getopt facility. The purpose
+  for including it here is to ensure portability across different unix- and
+  windows-based systems.
+
+  Copyright (C) 1987,88,89,90,91,92,93,94,95,96,98,99,2000,2001
+  Free Software Foundation, Inc. This file is part of the GNU C Library.
+
+-----------------------
+* src/GKlib/gk_getopt.h
+
+  file:  gk_getopt.h
+  brief: This file contains GNU's externs/structs/prototypes
+
+  \date   Started 3/27/2007
+  \author George
+  \version\verbatim $Id: gk_getopt.h 10711 2011-08-31 22:23:04Z karypis $ \endverbatim
+
+------------------
+* src/GKlib/sort.c
+
+  file:  sort.c
+  brief: This file contains GKlib's various sorting routines
+
+  These routines are implemented using the GKSORT macro that is defined
+  in gk_qsort.h and is based on GNU's GLIBC qsort() implementation.
+
+  Additional sorting routines can be created using the same way that
+  these routines where defined.
+
+  \date   Started 4/4/07
+  \author George
+  \version\verbatim $Id: sort.c 10796 2011-09-23 21:33:09Z karypis $ \endverbatim 
+
+-----------------------
+* src/GKlib/gk_mksort.h
+
+  file:  gk_mksort.h
+  brief: Templates for the qsort routine
+
+  \date   Started 3/28/07
+  \author George
+  \version\verbatim $Id: gk_mksort.h 10711 2011-08-31 22:23:04Z karypis $ \endverbatim
+
+  $Id: gk_mksort.h 10711 2011-08-31 22:23:04Z karypis $
+  Adopted from GNU glibc by Mjt.
+  See stdlib/qsort.c in glibc
+
+  Copyright (C) 1991, 1992, 1996, 1997, 1999 Free Software Foundation, Inc.
+  This file is part of the GNU C Library.
+  Written by Douglas C. Schmidt (schmidt@ics.uci.edu).
+
+---------------------
+* src/GKlib/gkregex.c
+
+  Extended regular expression matching and search library.
+  Copyright (C) 2002, 2003, 2005 Free Software Foundation, Inc.
+  This file is part of the GNU C Library.
+  Contributed by Isamu Hasegawa <isamu@yamato.ibm.com>.
+
+---------------------
+* src/GKlib/gkregex.h
+
+  Definitions for data structures and routines for the regular
+  expression library.
+  Copyright (C) 1985,1989-93,1995-98,2000,2001,2002,2003,2005,2006
+  Free Software Foundation, Inc.
+  This file is part of the GNU C Library.
