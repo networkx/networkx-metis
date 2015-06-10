@@ -1,101 +1,102 @@
-from cpython.mem cimport PyMem_Malloc, PyMem_Free
-from contextlib import contextmanager
-from os import dup, dup2, fdopen
-from sys import stdout
-from tempfile import TemporaryFile
-from _api cimport *
-from ._types import MetisError
+cimport cpython.mem
+import contextlib
+import os
+import sys
+import tempfile
+
+from networkx.addons.metis import _types
+cimport _api
 
 __all__ = ['part_graph', 'node_nd', 'compute_vertex_separator']
 
 
-@contextmanager
+@contextlib.contextmanager
 def redirect(source, target):
     """Temporarily redirect operations on file ``source`` to file ``target``.
     """
     source.flush()
     fd = source.fileno()
-    with fdopen(dup(fd), source.mode) as source2:
-        dup2(target.fileno(), fd)
+    with os.fdopen(os.dup(fd), source.mode) as source2:
+        os.dup2(target.fileno(), fd)
         try:
             yield
         finally:
             source.flush()
-            dup2(source2.fileno(), fd)
+            os.dup2(source2.fileno(), fd)
 
 
-cdef void* checked_malloc(idx_t size) except NULL:
-    cdef void* ptr = PyMem_Malloc(size)
+cdef void* checked_malloc(_api.idx_t size) except NULL:
+    cdef void* ptr = cpython.mem.PyMem_Malloc(size)
     if ptr == NULL:
         raise MemoryError()
     return ptr
 
 
-cdef idx_t* convert_idx_array(array) except NULL:
+cdef _api.idx_t* convert_idx_array(array) except NULL:
     """Convert a list of ints to a C array of idx_t's.
     """
-    cdef idx_t size = len(array)
-    cdef idx_t *_array = <idx_t*> checked_malloc(sizeof(idx_t) * size)
-    cdef idx_t i
+    cdef _api.idx_t size = len(array)
+    cdef _api.idx_t *_array = <_api.idx_t*> checked_malloc(sizeof(_api.idx_t) * size)
+    cdef _api.idx_t i
     try:
         for i from 0 <= i < size:
             _array[i] = array[i]
     except:
-        PyMem_Free(_array)
+        cpython.mem.PyMem_Free(_array)
         raise
     return _array
 
 
-cdef real_t* convert_real_array(array) except NULL:
+cdef _api.real_t* convert_real_array(array) except NULL:
     """Convert a list of floats to a C array of real_t's.
     """
-    cdef idx_t size = len(array)
-    cdef real_t *_array = <real_t*> checked_malloc(sizeof(real_t) * size)
-    cdef idx_t i
+    cdef _api.idx_t size = len(array)
+    cdef _api.real_t *_array = <_api.real_t*> checked_malloc(sizeof(_api.real_t) * size)
+    cdef _api.idx_t i
     try:
         for i from 0 <= i < size:
             _array[i] = array[i]
     except:
-        PyMem_Free(_array)
+        cpython.mem.PyMem_Free(_array)
         raise
     return _array
 
 
-cdef convert_options(options, idx_t *_options):
+cdef convert_options(options, _api.idx_t *_options):
     """Convert a MetisOptions object to a C array.
     """
-    METIS_SetDefaultOptions(_options)
+    _api.METIS_SetDefaultOptions(_options)
     if options is None:
         return
 
-    _options[<idx_t> METIS_OPTION_PTYPE]     = options.ptype
-    _options[<idx_t> METIS_OPTION_OBJTYPE]   = options.objtype
-    _options[<idx_t> METIS_OPTION_CTYPE]     = options.ctype
-    _options[<idx_t> METIS_OPTION_IPTYPE]    = options.iptype
-    _options[<idx_t> METIS_OPTION_RTYPE]     = options.rtype
-    _options[<idx_t> METIS_OPTION_NCUTS]     = options.ncuts
-    _options[<idx_t> METIS_OPTION_NSEPS]     = options.nseps
-    _options[<idx_t> METIS_OPTION_NUMBERING] = options.numbering
-    _options[<idx_t> METIS_OPTION_NITER]     = options.niter
-    _options[<idx_t> METIS_OPTION_SEED]      = options.seed
-    _options[<idx_t> METIS_OPTION_MINCONN]   = options.minconn
-    _options[<idx_t> METIS_OPTION_NO2HOP]    = options.no2hop
-    _options[<idx_t> METIS_OPTION_CONTIG]    = options.contig
-    _options[<idx_t> METIS_OPTION_COMPRESS]  = options.compress
-    _options[<idx_t> METIS_OPTION_CCORDER]   = options.ccorder
-    _options[<idx_t> METIS_OPTION_PFACTOR]   = options.pfactor
-    _options[<idx_t> METIS_OPTION_UFACTOR]   = options.ufactor
-    _options[<idx_t> METIS_OPTION_DBGLVL]    = options.dbglvl
+    _options[<_api.idx_t> _api.METIS_OPTION_PTYPE]     = options.ptype
+    _options[<_api.idx_t> _api.METIS_OPTION_OBJTYPE]   = options.objtype
+    _options[<_api.idx_t> _api.METIS_OPTION_CTYPE]     = options.ctype
+    _options[<_api.idx_t> _api.METIS_OPTION_IPTYPE]    = options.iptype
+    _options[<_api.idx_t> _api.METIS_OPTION_RTYPE]     = options.rtype
+    _options[<_api.idx_t> _api.METIS_OPTION_NCUTS]     = options.ncuts
+    _options[<_api.idx_t> _api.METIS_OPTION_NSEPS]     = options.nseps
+    _options[<_api.idx_t> _api.METIS_OPTION_NUMBERING] = options.numbering
+    _options[<_api.idx_t> _api.METIS_OPTION_NITER]     = options.niter
+    _options[<_api.idx_t> _api.METIS_OPTION_SEED]      = options.seed
+    _options[<_api.idx_t> _api.METIS_OPTION_MINCONN]   = options.minconn
+    _options[<_api.idx_t> _api.METIS_OPTION_NO2HOP]    = options.no2hop
+    _options[<_api.idx_t> _api.METIS_OPTION_CONTIG]    = options.contig
+    _options[<_api.idx_t> _api.METIS_OPTION_COMPRESS]  = options.compress
+    _options[<_api.idx_t> _api.METIS_OPTION_CCORDER]   = options.ccorder
+    _options[<_api.idx_t> _api.METIS_OPTION_PFACTOR]   = options.pfactor
+    _options[<_api.idx_t> _api.METIS_OPTION_UFACTOR]   = options.ufactor
+    _options[<_api.idx_t> _api.METIS_OPTION_DBGLVL]    = options.dbglvl
 
 
-cdef void convert_graph(xadj, adjncy, idx_t *nvtxs_ptr, idx_t **_xadj_ptr,
-                        idx_t **_adjncy_ptr) except *:
+cdef void convert_graph(xadj, adjncy, _api.idx_t *nvtxs_ptr, _api.idx_t **_xadj_ptr,
+                        _api.idx_t **_adjncy_ptr) except *:
     """Convert a list-based graph structure to C arrays.
     """
-    cdef idx_t nvtxs
-    cdef idx_t *_xadj = NULL
-    cdef idx_t *_adjncy = NULL
-    cdef idx_t i, j, k, l
+    cdef _api.idx_t nvtxs
+    cdef _api.idx_t *_xadj = NULL
+    cdef _api.idx_t *_adjncy = NULL
+    cdef _api.idx_t i, j, k, l
     try:
         _xadj = convert_idx_array(xadj)
         nvtxs = len(xadj) - 1
@@ -112,8 +113,8 @@ cdef void convert_graph(xadj, adjncy, idx_t *nvtxs_ptr, idx_t **_xadj_ptr,
             raise ValueError('len(adjncy) != xadj[-1]')
 
     except:
-        PyMem_Free(_xadj)
-        PyMem_Free(_adjncy)
+        cpython.mem.PyMem_Free(_xadj)
+        cpython.mem.PyMem_Free(_adjncy)
         raise
     with nogil:
         # Remove selfloops to prevent METIS crashes.
@@ -133,8 +134,8 @@ cdef void convert_graph(xadj, adjncy, idx_t *nvtxs_ptr, idx_t **_xadj_ptr,
 
 
 cdef void check_result(int result, msg) except *:
-    if result != METIS_OK:
-        raise MetisError(msg)
+    if result != _api.METIS_OK:
+        raise _types.MetisError(msg)
 
 
 def part_graph(xadj, adjncy, nparts, vwgt=None, vsize=None, adjwgt=None,
@@ -208,19 +209,19 @@ def part_graph(xadj, adjncy, nparts, vwgt=None, vsize=None, adjwgt=None,
     This wrapper function performs only minimal input validation to ensure
     memory safety in invocation of METIS.
     """
-    cdef idx_t nvtxs
-    cdef idx_t *_xadj = NULL
-    cdef idx_t *_adjncy = NULL
-    cdef idx_t _nparts
-    cdef idx_t *_vwgt = NULL
-    cdef idx_t *_vsize = NULL
-    cdef idx_t *_adjwgt = NULL
-    cdef real_t *_tpwgts = NULL
-    cdef idx_t ncon
-    cdef real_t *_ubvec = NULL
-    cdef idx_t _options[METIS_NOPTIONS]
-    cdef idx_t objval
-    cdef idx_t *_part = NULL
+    cdef _api.idx_t nvtxs
+    cdef _api.idx_t *_xadj = NULL
+    cdef _api.idx_t *_adjncy = NULL
+    cdef _api.idx_t _nparts
+    cdef _api.idx_t *_vwgt = NULL
+    cdef _api.idx_t *_vsize = NULL
+    cdef _api.idx_t *_adjwgt = NULL
+    cdef _api.real_t *_tpwgts = NULL
+    cdef _api.idx_t ncon
+    cdef _api.real_t *_ubvec = NULL
+    cdef _api.idx_t _options[_api.METIS_NOPTIONS]
+    cdef _api.idx_t objval
+    cdef _api.idx_t *_part = NULL
     cdef int _recursive
     cdef int result
     cdef int i
@@ -259,35 +260,35 @@ def part_graph(xadj, adjncy, nparts, vwgt=None, vsize=None, adjwgt=None,
                 raise ValueError('len(ubvec) != ncon')
 
         convert_options(options, _options)
-        _part = <idx_t*> checked_malloc(sizeof(idx_t) * nvtxs)
+        _part = <_api.idx_t*> checked_malloc(sizeof(_api.idx_t) * nvtxs)
         _recursive = bool(recursive)
 
-        with TemporaryFile() as tmp:
-            with redirect(stdout, tmp), nogil:
+        with tempfile.TemporaryFile() as tmp:
+            with redirect(sys.stdout, tmp), nogil:
                 if _recursive:
-                    result = METIS_PartGraphRecursive(
+                    result = _api.METIS_PartGraphRecursive(
                         &nvtxs, &ncon, _xadj, _adjncy, _vwgt, _vsize, _adjwgt,
                         &_nparts, _tpwgts, _ubvec, _options, &objval, _part)
                 else:
-                    result = METIS_PartGraphKway(
+                    result = _api.METIS_PartGraphKway(
                         &nvtxs, &ncon, _xadj, _adjncy, _vwgt, _vsize, _adjwgt,
                         &_nparts, _tpwgts, _ubvec, _options, &objval, _part)
             tmp.seek(0)
-            msg = unicode(tmp.read(), stdout.encoding)
+            msg = unicode(tmp.read(), sys.stdout.encoding)
 
         check_result(result, msg)
 
         part = [_part[i] for i from 0 <= i < nvtxs]
         return objval, part
     finally:
-        PyMem_Free(_xadj)
-        PyMem_Free(_adjncy)
-        PyMem_Free(_vwgt)
-        PyMem_Free(_vsize)
-        PyMem_Free(_adjwgt)
-        PyMem_Free(_tpwgts)
-        PyMem_Free(_ubvec)
-        PyMem_Free(_part)
+        cpython.mem.PyMem_Free(_xadj)
+        cpython.mem.PyMem_Free(_adjncy)
+        cpython.mem.PyMem_Free(_vwgt)
+        cpython.mem.PyMem_Free(_vsize)
+        cpython.mem.PyMem_Free(_adjwgt)
+        cpython.mem.PyMem_Free(_tpwgts)
+        cpython.mem.PyMem_Free(_ubvec)
+        cpython.mem.PyMem_Free(_part)
 
 
 def node_nd(xadj, adjncy, vwgt=None, options=None):
@@ -329,15 +330,15 @@ def node_nd(xadj, adjncy, vwgt=None, options=None):
     This wrapper function performs only minimal input validation to ensure
     memory safety in invocation of METIS.
     """
-    cdef idx_t nvtxs
-    cdef idx_t *_xadj = NULL
-    cdef idx_t *_adjncy = NULL
-    cdef idx_t *_vwgt = NULL
-    cdef idx_t _options[METIS_NOPTIONS]
-    cdef idx_t *_perm = NULL
-    cdef idx_t *_iperm = NULL
+    cdef _api.idx_t nvtxs
+    cdef _api.idx_t *_xadj = NULL
+    cdef _api.idx_t *_adjncy = NULL
+    cdef _api.idx_t *_vwgt = NULL
+    cdef _api.idx_t _options[_api.METIS_NOPTIONS]
+    cdef _api.idx_t *_perm = NULL
+    cdef _api.idx_t *_iperm = NULL
     cdef int result
-    cdef idx_t i
+    cdef _api.idx_t i
     try:
         convert_graph(xadj, adjncy, &nvtxs, &_xadj, &_adjncy)
 
@@ -349,15 +350,15 @@ def node_nd(xadj, adjncy, vwgt=None, options=None):
 
         convert_options(options, _options)
 
-        _perm = <idx_t*> checked_malloc(sizeof(idx_t) * nvtxs)
-        _iperm = <idx_t*> checked_malloc(sizeof(idx_t) * nvtxs)
+        _perm = <_api.idx_t*> checked_malloc(sizeof(_api.idx_t) * nvtxs)
+        _iperm = <_api.idx_t*> checked_malloc(sizeof(_api.idx_t) * nvtxs)
 
-        with TemporaryFile() as tmp:
-            with redirect(stdout, tmp), nogil:
-                result = METIS_NodeND(&nvtxs, _xadj, _adjncy, _vwgt, _options,
+        with tempfile.TemporaryFile() as tmp:
+            with redirect(sys.stdout, tmp), nogil:
+                result = _api.METIS_NodeND(&nvtxs, _xadj, _adjncy, _vwgt, _options,
                                       _perm, _iperm)
             tmp.seek(0)
-            msg = unicode(tmp.read(), stdout.encoding)
+            msg = unicode(tmp.read(), sys.stdout.encoding)
 
         check_result(result, msg)
 
@@ -365,11 +366,11 @@ def node_nd(xadj, adjncy, vwgt=None, options=None):
         iperm = [_iperm[i] for i from 0 <= i < nvtxs]
         return perm, iperm
     finally:
-        PyMem_Free(_xadj)
-        PyMem_Free(_adjncy)
-        PyMem_Free(_vwgt)
-        PyMem_Free(_perm)
-        PyMem_Free(_iperm)
+        cpython.mem.PyMem_Free(_xadj)
+        cpython.mem.PyMem_Free(_adjncy)
+        cpython.mem.PyMem_Free(_vwgt)
+        cpython.mem.PyMem_Free(_perm)
+        cpython.mem.PyMem_Free(_iperm)
 
 
 def set_default_options(options):
@@ -380,36 +381,36 @@ def set_default_options(options):
     options : MetisOptions
         Options.
     """
-    cdef idx_t _options[METIS_NOPTIONS]
-    METIS_SetDefaultOptions(_options)
-    options.ptype     = _options[<idx_t> METIS_OPTION_PTYPE]
-    options.objtype   = _options[<idx_t> METIS_OPTION_OBJTYPE]
-    options.ctype     = _options[<idx_t> METIS_OPTION_CTYPE]
-    options.iptype    = _options[<idx_t> METIS_OPTION_IPTYPE]
-    options.rtype     = _options[<idx_t> METIS_OPTION_RTYPE]
-    options.ncuts     = _options[<idx_t> METIS_OPTION_NCUTS]
-    options.nseps     = _options[<idx_t> METIS_OPTION_NSEPS]
-    options.numbering = _options[<idx_t> METIS_OPTION_NUMBERING]
-    options.niter     = _options[<idx_t> METIS_OPTION_NITER]
-    options.seed      = _options[<idx_t> METIS_OPTION_SEED]
-    options.minconn   = _options[<idx_t> METIS_OPTION_MINCONN]
-    options.no2hop    = _options[<idx_t> METIS_OPTION_NO2HOP]
-    options.contig    = _options[<idx_t> METIS_OPTION_CONTIG]
-    options.compress  = _options[<idx_t> METIS_OPTION_COMPRESS]
-    options.ccorder   = _options[<idx_t> METIS_OPTION_CCORDER]
-    options.pfactor   = _options[<idx_t> METIS_OPTION_PFACTOR]
-    options.ufactor   = _options[<idx_t> METIS_OPTION_UFACTOR]
-    options.dbglvl    = _options[<idx_t> METIS_OPTION_DBGLVL]
+    cdef _api.idx_t _options[_api.METIS_NOPTIONS]
+    _api.METIS_SetDefaultOptions(_options)
+    options.ptype     = _options[<_api.idx_t> _api.METIS_OPTION_PTYPE]
+    options.objtype   = _options[<_api.idx_t> _api.METIS_OPTION_OBJTYPE]
+    options.ctype     = _options[<_api.idx_t> _api.METIS_OPTION_CTYPE]
+    options.iptype    = _options[<_api.idx_t> _api.METIS_OPTION_IPTYPE]
+    options.rtype     = _options[<_api.idx_t> _api.METIS_OPTION_RTYPE]
+    options.ncuts     = _options[<_api.idx_t> _api.METIS_OPTION_NCUTS]
+    options.nseps     = _options[<_api.idx_t> _api.METIS_OPTION_NSEPS]
+    options.numbering = _options[<_api.idx_t> _api.METIS_OPTION_NUMBERING]
+    options.niter     = _options[<_api.idx_t> _api.METIS_OPTION_NITER]
+    options.seed      = _options[<_api.idx_t> _api.METIS_OPTION_SEED]
+    options.minconn   = _options[<_api.idx_t> _api.METIS_OPTION_MINCONN]
+    options.no2hop    = _options[<_api.idx_t> _api.METIS_OPTION_NO2HOP]
+    options.contig    = _options[<_api.idx_t> _api.METIS_OPTION_CONTIG]
+    options.compress  = _options[<_api.idx_t> _api.METIS_OPTION_COMPRESS]
+    options.ccorder   = _options[<_api.idx_t> _api.METIS_OPTION_CCORDER]
+    options.pfactor   = _options[<_api.idx_t> _api.METIS_OPTION_PFACTOR]
+    options.ufactor   = _options[<_api.idx_t> _api.METIS_OPTION_UFACTOR]
+    options.dbglvl    = _options[<_api.idx_t> _api.METIS_OPTION_DBGLVL]
 
 
 def compute_vertex_separator(xadj, adjncy, vwgt=None, options=None):
-    cdef idx_t nvtxs
-    cdef idx_t *_xadj = NULL
-    cdef idx_t *_adjncy = NULL
-    cdef idx_t *_vwgt = NULL
-    cdef idx_t _options[METIS_NOPTIONS]
-    cdef idx_t sepsize
-    cdef idx_t *_part = NULL
+    cdef _api.idx_t nvtxs
+    cdef _api.idx_t *_xadj = NULL
+    cdef _api.idx_t *_adjncy = NULL
+    cdef _api.idx_t *_vwgt = NULL
+    cdef _api.idx_t _options[_api.METIS_NOPTIONS]
+    cdef _api.idx_t sepsize
+    cdef _api.idx_t *_part = NULL
     cdef int result
     cdef int i
     try:
@@ -421,21 +422,21 @@ def compute_vertex_separator(xadj, adjncy, vwgt=None, options=None):
                 raise ValueError('len(vwgt) != len(xadj) - 1')
 
         convert_options(options, _options)
-        _part = <idx_t*> checked_malloc(sizeof(idx_t) * nvtxs)
+        _part = <_api.idx_t*> checked_malloc(sizeof(_api.idx_t) * nvtxs)
 
-        with TemporaryFile() as tmp:
-            with redirect(stdout, tmp), nogil:
-                result = METIS_ComputeVertexSeparator(
+        with tempfile.TemporaryFile() as tmp:
+            with redirect(sys.stdout, tmp), nogil:
+                result = _api.METIS_ComputeVertexSeparator(
                     &nvtxs, _xadj, _adjncy, _vwgt, _options, &sepsize, _part)
             tmp.seek(0)
-            msg = unicode(tmp.read(), stdout.encoding)
+            msg = unicode(tmp.read(), sys.stdout.encoding)
 
         check_result(result, msg)
 
         part = [_part[i] for i from 0 <= i < nvtxs]
         return sepsize, part
     finally:
-        PyMem_Free(_xadj)
-        PyMem_Free(_adjncy)
-        PyMem_Free(_vwgt)
-        PyMem_Free(_part)
+        cpython.mem.PyMem_Free(_xadj)
+        cpython.mem.PyMem_Free(_adjncy)
+        cpython.mem.PyMem_Free(_vwgt)
+        cpython.mem.PyMem_Free(_part)
