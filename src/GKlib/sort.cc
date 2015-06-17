@@ -6,9 +6,27 @@
 #include <functional>
 
 extern "C" {
+#include "GKlib.h"
+}
 
-#include <GKlib.h>
+namespace {
+  struct gk_kv_t_greater {
+    template<typename T>
+    bool operator()(const T &a, const T &b) const {
+      return a.key > b.key;
+    }
+  };
 
+  struct gk_kv_t_less {
+    template<typename T>
+    bool operator()(const T &a, const T &b) const {
+      return a.key < b.key;
+    }
+  };
+
+}
+
+extern "C" {
 
 
 /*************************************************************************/
@@ -108,7 +126,7 @@ void gk_idxsortd(size_t n, gk_idx_t *base)
 /*************************************************************************/
 void gk_ckvsorti(size_t n, gk_ckv_t *base)
 {
-  std::sort(base, base + n);  
+  std::sort(base, base + n, gk_kv_t_less());
 }
 
 
@@ -117,7 +135,7 @@ void gk_ckvsorti(size_t n, gk_ckv_t *base)
 /*************************************************************************/
 void gk_ckvsortd(size_t n, gk_ckv_t *base)
 {
-  std::sort(base, base + n, std::greater<gk_ckv_t>());
+  std::sort(base, base + n, gk_kv_t_greater());
 }
 
 
@@ -126,7 +144,7 @@ void gk_ckvsortd(size_t n, gk_ckv_t *base)
 /*************************************************************************/
 void gk_ikvsorti(size_t n, gk_ikv_t *base)
 {
-  std::sort(base, base + n);
+  std::sort(base, base + n, gk_kv_t_less());
 }
 
 
@@ -135,7 +153,7 @@ void gk_ikvsorti(size_t n, gk_ikv_t *base)
 /*************************************************************************/
 void gk_ikvsortd(size_t n, gk_ikv_t *base)
 {
-    std::sort(base, base + n, std::greater<gk_ikv_t>());
+    std::sort(base, base + n, gk_kv_t_greater());
 }
 
 
@@ -144,7 +162,7 @@ void gk_ikvsortd(size_t n, gk_ikv_t *base)
 /*************************************************************************/
 void gk_i32kvsorti(size_t n, gk_i32kv_t *base)
 {
-  std::sort(base, base + n);
+  std::sort(base, base + n, gk_kv_t_less());
 }
 
 
@@ -153,7 +171,7 @@ void gk_i32kvsorti(size_t n, gk_i32kv_t *base)
 /*************************************************************************/
 void gk_i32kvsortd(size_t n, gk_i32kv_t *base)
 {
-  std::sort(base, base + n, std::greater<gk_i32kv_t>());
+  std::sort(base, base + n, gk_kv_t_greater());
 }
 
 
@@ -162,7 +180,7 @@ void gk_i32kvsortd(size_t n, gk_i32kv_t *base)
 /*************************************************************************/
 void gk_i64kvsorti(size_t n, gk_i64kv_t *base)
 {
-  std::sort(base, base + n);
+  std::sort(base, base + n, gk_kv_t_less());
 }
 
 
@@ -171,7 +189,7 @@ void gk_i64kvsorti(size_t n, gk_i64kv_t *base)
 /*************************************************************************/
 void gk_i64kvsortd(size_t n, gk_i64kv_t *base)
 {
-  std::sort(base, base + n, std::greater<gk_i64kv_t>());
+  std::sort(base, base + n, gk_kv_t_greater());
 }
 
 
@@ -180,7 +198,7 @@ void gk_i64kvsortd(size_t n, gk_i64kv_t *base)
 /*************************************************************************/
 void gk_zkvsorti(size_t n, gk_zkv_t *base)
 {
-  std::sort(base, base + n);
+  std::sort(base, base + n, gk_kv_t_less());
 }
 
 
@@ -189,7 +207,7 @@ void gk_zkvsorti(size_t n, gk_zkv_t *base)
 /*************************************************************************/
 void gk_zkvsortd(size_t n, gk_zkv_t *base)
 {
-  std::sort(base, base + n, std::greater<gk_zkv_t>());
+  std::sort(base, base + n, gk_kv_t_greater());
 }
 
 
@@ -198,7 +216,7 @@ void gk_zkvsortd(size_t n, gk_zkv_t *base)
 /*************************************************************************/
 void gk_fkvsorti(size_t n, gk_fkv_t *base)
 {
-  std::sort(base, base + n);
+  std::sort(base, base + n, gk_kv_t_less());
 }
 
 
@@ -207,7 +225,7 @@ void gk_fkvsorti(size_t n, gk_fkv_t *base)
 /*************************************************************************/
 void gk_fkvsortd(size_t n, gk_fkv_t *base)
 {
-  std::sort(base, base + n, std::greater<gk_fkv_t>());
+  std::sort(base, base + n, gk_kv_t_greater());
 }
 
 
@@ -216,7 +234,7 @@ void gk_fkvsortd(size_t n, gk_fkv_t *base)
 /*************************************************************************/
 void gk_dkvsorti(size_t n, gk_dkv_t *base)
 {
-  std::sort(base, base + n);
+  std::sort(base, base + n, gk_kv_t_less());
 }
 
 
@@ -225,7 +243,7 @@ void gk_dkvsorti(size_t n, gk_dkv_t *base)
 /*************************************************************************/
 void gk_dkvsortd(size_t n, gk_dkv_t *base)
 {
-  std::sort(base, base + n, std::greater<gk_dkv_t>());
+  std::sort(base, base + n, gk_kv_t_greater());
 }
 
 
@@ -234,7 +252,7 @@ void gk_dkvsortd(size_t n, gk_dkv_t *base)
 /*************************************************************************/
 void gk_skvsorti(size_t n, gk_skv_t *base)
 {
-  std::sort(base, base + n);
+  std::sort(base, base + n, gk_kv_t_less());
 }
 
 
@@ -243,7 +261,7 @@ void gk_skvsorti(size_t n, gk_skv_t *base)
 /*************************************************************************/
 void gk_skvsortd(size_t n, gk_skv_t *base)
 {
-  std::sort(base, base + n, std::greater<gk_skv_t>());
+  std::sort(base, base + n, gk_kv_t_greater());
 }
 
 
@@ -252,7 +270,7 @@ void gk_skvsortd(size_t n, gk_skv_t *base)
 /*************************************************************************/
 void gk_idxkvsorti(size_t n, gk_idxkv_t *base)
 {
-  std::sort(base, base + n);
+  std::sort(base, base + n, gk_kv_t_less());
 }
 
 
@@ -261,7 +279,7 @@ void gk_idxkvsorti(size_t n, gk_idxkv_t *base)
 /*************************************************************************/
 void gk_idxkvsortd(size_t n, gk_idxkv_t *base)
 {
-  std::sort(base, base + n, std::greater<gk_idxkv_t>());
+  std::sort(base, base + n, gk_kv_t_greater());
 }
 
 }
