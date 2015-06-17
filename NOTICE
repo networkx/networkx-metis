@@ -1,0 +1,34 @@
+NOTICE
+------
+
+This software is a derivative work of METIS 5.1.0, Copyright 1995-2013, 
+Regents of the University of Minnesota, licensed under Apache License Version 2.0.
+The original METIS source code is provided along with this software. However,
+original METIS source code uses some of external code licensed under the GNU 
+Lesser General Public License (LGPL). This software makes no use of any of the
+code licensed under LGPL, so the original METIS source code is modified for
+the purpose. This is the list of modifications.
+
+* Following files were modified, removed or added to the original library to remove
+the dependecy over the code licensed under GNU Lesser General Public License :
+
+ file : GKlib/gk_mksort.h
+ file : GKlib/sort.c
+ file : GKlib/sort.cc
+ file : GKlib/gkregex.h
+ file : GKlib/gkregex.c
+ file : GKlib/getopt.c
+ file : GKlib/gk_getopt.h
+ file : libmetis/gklib.c
+ file : libmetis/gklib.cc
+ file : libmetis/gklib_sort.cc
+
+
+* Following files were modified or removed from the original library to help
+the code build for the use of external python wrappers :
+
+ file : GKlib/GKlib.h
+ file : GKlib/gk_arch.h
+ file : GKlib/string.c
+ file : GKlib/gk_mkrandom.h
+ file : GKlib/gk_proto.h
