@@ -1,28 +1,32 @@
+from libc cimport stdio
 cimport cpython.mem
+cimport _api
+
 import contextlib
 import os
 import sys
 import tempfile
 
 from networkx.addons.metis import _types
-cimport _api
 
 __all__ = ['part_graph', 'node_nd', 'compute_vertex_separator']
 
 
+_STDOUT_FILENO = 1 #File descriptor for stdout
+
+
 @contextlib.contextmanager
-def redirect(source, target):
-    """Temporarily redirect operations on file ``source`` to file ``target``.
+def redirect_stdout(target):
+    """Temporarily redirect operations on ``stdout`` to file ``target``.
     """
-    source.flush()
-    fd = source.fileno()
-    with os.fdopen(os.dup(fd), source.mode) as source2:
-        os.dup2(target.fileno(), fd)
+    stdio.fflush(stdio.stdout)
+    with os.fdopen(os.dup(_STDOUT_FILENO), 'w') as stdout_backup:
+        os.dup2(target.fileno(), _STDOUT_FILENO)
         try:
             yield
         finally:
-            source.flush()
-            os.dup2(source2.fileno(), fd)
+            stdio.fflush(stdio.stdout)
+            os.dup2(stdout_backup.fileno(), _STDOUT_FILENO)
 
 
 cdef void* checked_malloc(_api.idx_t size) except NULL:
@@ -264,7 +268,7 @@ def part_graph(xadj, adjncy, nparts, vwgt=None, vsize=None, adjwgt=None,
         _recursive = bool(recursive)
 
         with tempfile.TemporaryFile() as tmp:
-            with redirect(sys.stdout, tmp), nogil:
+            with redirect_stdout(tmp), nogil:
                 if _recursive:
                     result = _api.METIS_PartGraphRecursive(
                         &nvtxs, &ncon, _xadj, _adjncy, _vwgt, _vsize, _adjwgt,
@@ -274,7 +278,7 @@ def part_graph(xadj, adjncy, nparts, vwgt=None, vsize=None, adjwgt=None,
                         &nvtxs, &ncon, _xadj, _adjncy, _vwgt, _vsize, _adjwgt,
                         &_nparts, _tpwgts, _ubvec, _options, &objval, _part)
             tmp.seek(0)
-            msg = unicode(tmp.read(), sys.stdout.encoding)
+            msg = tmp.read().decode('ascii')
 
         check_result(result, msg)
 
@@ -354,11 +358,11 @@ def node_nd(xadj, adjncy, vwgt=None, options=None):
         _iperm = <_api.idx_t*> checked_malloc(sizeof(_api.idx_t) * nvtxs)
 
         with tempfile.TemporaryFile() as tmp:
-            with redirect(sys.stdout, tmp), nogil:
+            with redirect_stdout(tmp), nogil:
                 result = _api.METIS_NodeND(&nvtxs, _xadj, _adjncy, _vwgt, _options,
-                                      _perm, _iperm)
+                                           _perm, _iperm)
             tmp.seek(0)
-            msg = unicode(tmp.read(), sys.stdout.encoding)
+            msg = tmp.read().decode('ascii')
 
         check_result(result, msg)
 
@@ -425,11 +429,11 @@ def compute_vertex_separator(xadj, adjncy, vwgt=None, options=None):
         _part = <_api.idx_t*> checked_malloc(sizeof(_api.idx_t) * nvtxs)
 
         with tempfile.TemporaryFile() as tmp:
-            with redirect(sys.stdout, tmp), nogil:
+            with redirect_stdout(tmp), nogil:
                 result = _api.METIS_ComputeVertexSeparator(
                     &nvtxs, _xadj, _adjncy, _vwgt, _options, &sepsize, _part)
             tmp.seek(0)
-            msg = unicode(tmp.read(), sys.stdout.encoding)
+            msg = tmp.read().decode('ascii')
 
         check_result(result, msg)
 
