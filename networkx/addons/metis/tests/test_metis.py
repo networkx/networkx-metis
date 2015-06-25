@@ -68,3 +68,12 @@ class TestMetis(object):
             sorted(map(sorted,
                        [[(sep[0] + i) % n for i in range(1, n // 2)],
                         [(sep[1] + i) % n for i in range(1, n // 2)]])))
+
+    def test_MetisOptions(self):
+        n = 16
+        xadj, adjncy = make_cycle(n)
+        options = types.MetisOptions(niter=-2)
+        nose.tools.assert_raises_regexp(types.MetisError,
+                                        'Input Error: Incorrect niter.',
+                                        _metis.part_graph, xadj, adjncy, 2,
+                                        options=options)
