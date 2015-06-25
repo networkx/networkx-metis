@@ -1,0 +1,9 @@
+ipython[nbconvert]
+numpy >= 1.6
+pandas
+pydotplus
+sphinx >= 1.3
+sphinxcontrib-bibtex
+sphinx_rtd_theme
+Cython
+networkx
