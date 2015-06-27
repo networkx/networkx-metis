@@ -47,7 +47,7 @@ class MetisOptions(object):
             vol Total communication volume minimization
             === =======================================
         """
-    return self._objtype
+        return self._objtype
 
     @objtype.setter
     def objtype(self, value):
@@ -62,7 +62,7 @@ class MetisOptions(object):
             shem Sorted heavy-edge matching
             ==== ==========================
         """
-    return self._ctype
+        return self._ctype
 
     @ctype.setter
     def ctype(self, value):
@@ -79,7 +79,7 @@ class MetisOptions(object):
             node   Grow a bisection using a greedy node-based strategy
             ====== ======================================================
        """
-    return self._iptype
+        return self._iptype
 
     @iptype.setter
     def iptype(self, value):
@@ -96,7 +96,7 @@ class MetisOptions(object):
             sep1sided One-sided node FM refinement
             ========= ======================================
         """
-    return self._rtype
+        return self._rtype
 
     @rtype.setter
     def rtype(self, value):
@@ -134,7 +134,7 @@ class MetisOptions(object):
             one  Fortran-style one-based numbering
             ==== =================================
         """
-    return self._numbering
+        return self._numbering
 
     @numbering.setter
     def numbering(self, value):
@@ -248,8 +248,8 @@ class MetisOptions(object):
             contiginfo Display information related to the elimination of
                        connected components
             ========== ======================================================
-       """
-    return self._dbglvl
+        """
+        return self._dbglvl
 
     @dbglvl.setter
     def dbglvl(self, value):
