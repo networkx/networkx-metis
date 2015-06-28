@@ -31,7 +31,7 @@ ext_modules = cythonize([Extension('networkx.addons.metis._metis', ['*.pyx'],
                                    include_dirs=['src/GKlib', 'src/libmetis'],
                                    libraries=['metis', 'gklib'])])
 
-install_requires = ['decorator', 'six']
+install_requires = ['networkx>=2.0', 'decorator', 'six']
 
 if sys.version_info[:2] < (3, 4):
     install_requires.append('enum34')
@@ -61,5 +61,7 @@ if __name__ == "__main__":
         namespace_packages = ['networkx.addons', 'networkx'],
         libraries          = libraries,
         ext_modules        = ext_modules,
-        install_requires   = install_requires
+        install_requires   = install_requires,
+        test_suite         = 'nose.collector',
+        tests_require      = ['nose>=0.10.1']
     )
