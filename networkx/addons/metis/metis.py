@@ -14,6 +14,7 @@ import sys
 
 import networkx as nx
 
+from networkx.addons.metis import exceptions
 from networkx.addons.metis import _metis
 from networkx.addons.metis import types
 __all__ = ['node_nested_dissection', 'partition', 'vertex_separator',
@@ -89,7 +90,8 @@ def _convert_exceptions(convert_type, catch_types=None):
 
 @nx.utils.not_implemented_for('directed')
 @nx.utils.not_implemented_for('multigraph')
-@_convert_exceptions(nx.NetworkXError, (ValueError, TypeError, types.MetisError))
+@_convert_exceptions(
+    nx.NetworkXError, (ValueError, TypeError, exceptions.MetisError))
 def node_nested_dissection(G, weight='weight', options=None):
     """Compute a node ordering of a graph that reduces fill when the Laplacian
     matrix of the graph is LU factorized. The algorithm aims to minimize the
@@ -139,7 +141,8 @@ def node_nested_dissection(G, weight='weight', options=None):
 
 @nx.utils.not_implemented_for('directed')
 @nx.utils.not_implemented_for('multigraph')
-@_convert_exceptions(nx.NetworkXError, (ValueError, TypeError, types.MetisError))
+@_convert_exceptions(
+    nx.NetworkXError, (ValueError, TypeError, exceptions.MetisError))
 def partition(G, nparts, node_weight='weight', node_size='size',
               edge_weight='weight', tpwgts=None, ubvec=None, options=None,
               recursive=False):
@@ -261,7 +264,8 @@ def partition(G, nparts, node_weight='weight', node_size='size',
 
 @nx.utils.not_implemented_for('directed')
 @nx.utils.not_implemented_for('multigraph')
-@_convert_exceptions(nx.NetworkXError, (ValueError, TypeError, types.MetisError))
+@_convert_exceptions(
+    nx.NetworkXError, (ValueError, TypeError, exceptions.MetisError))
 def vertex_separator(G, weight='weight', options=None):
     """Compute a vertex separator that bisects a graph. The algorithm aims to
     minimize the sum of weights of vertices in the separator.

@@ -3,7 +3,7 @@ import numbers
 import enums
 from networkx.addons.metis import _metis
 
-__all__ = ['MetisOptions', 'MetisError']
+__all__ = ['MetisOptions']
 
 
 class MetisOptions(object):
@@ -267,9 +267,3 @@ class MetisOptions(object):
             self.__class__.__name__,
             ', '.join('{0}={1}'.format(name, repr(getattr(self, name)))
                       for name in names))
-
-
-class MetisError(Exception):
-    """An error type generated from METIS"""
-    def __init__(self, rstatus):
-        super(MetisError, self).__init__(rstatus)
