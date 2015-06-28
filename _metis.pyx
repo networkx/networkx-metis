@@ -139,7 +139,7 @@ cdef void convert_graph(xadj, adjncy, _api.idx_t *nvtxs_ptr, _api.idx_t **_xadj_
 
 cdef void check_result(int result, msg) except *:
     if result != _api.METIS_OK:
-        raise exceptions.MetisError(msg)
+        raise exceptions.MetisError(result, msg)
 
 
 def part_graph(xadj, adjncy, nparts, vwgt=None, vsize=None, adjwgt=None,

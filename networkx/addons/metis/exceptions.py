@@ -1,16 +1,20 @@
+from networkx.addons.metis import types
 __all__ = ['MetisError']
+
 
 class MetisError(Exception):
     """Error returned by METIS"""
 
-    def __init__(self, rstatus):
-        """Types of return codes.
+    def __init__(self, rstatus, msg):
+        """Initializes a MetisError object.
 
-            ======================================== ==================
-            Returned normally                        METIS_OK
-            Returned due to erroneous inputs/options METIS_ERROR_INPUT
-            Returned due to insufficient memory      METIS_ERROR_MEMORY
-            Some other errors                        METIS_ERROR
-            ======================================== ==================
+        Parameters
+        ----------
+        rstatus : int
+            Error code returned by METIS.
+
+        msg : string
+            Error message returned by METIS.
         """
-        super(MetisError, self).__init__(rstatus)
+        super(MetisError, self).__init__('{0}: {1}'.format(
+            types.MetisRStatus(rstatus).name, msg))
