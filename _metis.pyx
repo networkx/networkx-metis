@@ -7,7 +7,7 @@ import os
 import sys
 import tempfile
 
-from networkx.addons.metis import types
+from networkx.addons.metis import exceptions
 
 __all__ = ['part_graph', 'node_nd', 'compute_vertex_separator']
 
@@ -139,7 +139,7 @@ cdef void convert_graph(xadj, adjncy, _api.idx_t *nvtxs_ptr, _api.idx_t **_xadj_
 
 cdef void check_result(int result, msg) except *:
     if result != _api.METIS_OK:
-        raise types.MetisError(msg)
+        raise exceptions.MetisError(msg)
 
 
 def part_graph(xadj, adjncy, nparts, vwgt=None, vsize=None, adjwgt=None,
