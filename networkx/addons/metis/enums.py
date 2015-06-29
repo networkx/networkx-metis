@@ -110,7 +110,7 @@ class MetisDbgLvl(enum.IntEnum):
 
     default = -1
     (info, time, coarsen, refine, ipart, moveinfo, sepinfo, conninfo,
-     contiginfo, memory) = [1 << x for x in range(9) + [11]]
+     contiginfo, memory) = [1 << x for x in list(range(9)) + [11]]
 
 
 @enum.unique
