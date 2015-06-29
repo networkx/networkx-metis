@@ -14,9 +14,11 @@ import sys
 
 import networkx as nx
 
+from networkx.addons.metis import enums
 from networkx.addons.metis import exceptions
 from networkx.addons.metis import _metis
 from networkx.addons.metis import types
+
 __all__ = ['node_nested_dissection', 'partition', 'vertex_separator',
            'MetisOptions']
 
@@ -28,7 +30,7 @@ def _zero_numbering(options):
     """Temporarily force zero-based numbering."""
     if options:
         numbering = options.numbering
-        options.numbering = MetisNumbering.zero
+        options.numbering = enums.MetisNumbering.zero
     try:
         yield
     finally:
