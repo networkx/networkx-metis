@@ -2,13 +2,18 @@
 __pycache__
 *~
 
-networkx/addons/metis/build/*
+build/*
+dist/*
+*.egg-info/
 
 # Generated when 'python setup.py build_clib'
 # and 'python setup.py build-ext --inplace'
 networkx/addons/metis/_metis.so
 networkx/addons/metis/_metis.*.so
 _metis.c
+
+# Sphinx documentation
+docs/build/
 
 # Sublime Text project files
 *.sublime-project
