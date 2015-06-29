@@ -13,6 +13,7 @@ import itertools
 import sys
 
 import networkx as nx
+import six
 
 from networkx.addons.metis import enums
 from networkx.addons.metis import exceptions
@@ -85,7 +86,7 @@ def _convert_exceptions(convert_type, catch_types=None):
         except Exception as e:
             if catch_types is not None:
                 raise
-            exc = sys.exec_info()
+            exc = sys.exc_info()
         six.reraise(convert_type, convert_type(exc[1]), exc[2])
     return _convert_exceptions
 
