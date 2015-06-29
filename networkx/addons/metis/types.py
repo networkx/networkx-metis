@@ -223,7 +223,7 @@ class MetisOptions(object):
         """User-supplied ufactor"""
         return self._ufactor
 
-    @pfactor.setter
+    @ufactor.setter
     def ufactor(self, value):
         if not isinstance(value, numbers.Number) or value != int(value):
             raise ValueError('{0} is not an int'.format(repr(value)))
