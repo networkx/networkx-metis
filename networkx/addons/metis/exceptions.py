@@ -1,4 +1,4 @@
-from networkx.addons.metis import types
+from networkx.addons.metis import enums
 __all__ = ['MetisError']
 
 
@@ -17,4 +17,4 @@ class MetisError(Exception):
             Error message returned by METIS.
         """
         super(MetisError, self).__init__('{0}: {1}'.format(
-            types.MetisRStatus(rstatus).name, msg))
+            enums.MetisRStatus(rstatus).name, msg))
