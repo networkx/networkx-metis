@@ -81,7 +81,7 @@ def _convert_exceptions(convert_type, catch_types=None):
     def _convert_exceptions(func, *args, **kwargs):
         try:
             return func(*args, **kwargs)
-        except catch_types or () as e:
+        except catch_types as e:
             exc = e
         except Exception as e:
             if catch_types is not None:
@@ -255,8 +255,9 @@ def partition(G, nparts, node_weight='weight', node_size='size',
         tpwgts = list(itertools.chain.from_iterable(tpwgts))
 
     with _zero_numbering(options):
-        objval, part = _metis.part_graph(xadj, adjncy, nparts, vwgt, vsize, adjwgt,
-                                         tpwgts, ubvec, options, recursive)
+        objval, part = _metis.part_graph(xadj, adjncy, nparts, vwgt, vsize,
+                                         adjwgt, tpwgts, ubvec, options,
+                                         recursive)
 
     parts = [[] for i in range(nparts)]
     for u, i in zip(G, part):
