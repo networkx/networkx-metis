@@ -27,7 +27,8 @@ libraries = [
                'depends': glob('src/libmetis/*.h'),
                'include_dirs': ['src/GKlib', 'src/libmetis']})]
 
-ext_modules = cythonize([Extension('networkx.addons.metis._metis', ['*.pyx'],
+ext_modules = cythonize(
+  [Extension('networkx.addons.metis._metis', ['networkx/addons/metis/_metis.pyx'],
                                    include_dirs=['src/GKlib', 'src/libmetis'],
                                    libraries=['metis', 'gklib'])])
 
