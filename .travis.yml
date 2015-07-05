@@ -1,0 +1,26 @@
+language: python
+
+python:
+  - 2.7
+  - 3.2
+  - 3.3
+  - 3.4
+  - "pypy"
+  - "pypy3"
+
+before_install:
+
+ - sudo apt-get update
+ - sudo apt-get install build-essential
+
+install:
+ - pip install Cython
+ - pip install https://github.com/networkx/networkx/archive/master.zip
+ - pip install .
+
+script:
+ - cd `mktemp -d`  # Navigate into a temporary directory to avoid loading the local code
+ - nosetests networkx.addons.metis.tests.test_metis --nocapture --verbosity=2
+
+notifications:
+  email: false
