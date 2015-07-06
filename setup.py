@@ -15,8 +15,8 @@ if sys.argv[-1] == 'setup.py':
 
 if sys.version_info[:2] < (2, 7):
     print(
-      'networkx-metis requires Python version 2.7 or later' +
-      ' ({}.{} detected).'.format(*sys.version_info[:2]))
+        'networkx-metis requires Python version 2.7 or later' +
+        ' ({}.{} detected).'.format(*sys.version_info[:2]))
     sys.exit(-1)
 
 libraries = [
@@ -28,9 +28,10 @@ libraries = [
                'include_dirs': ['src/GKlib', 'src/libmetis']})]
 
 ext_modules = cythonize(
-  [Extension('networkx.addons.metis._metis', ['networkx/addons/metis/_metis.pyx'],
-                                   include_dirs=['src/GKlib', 'src/libmetis'],
-                                   libraries=['metis', 'gklib'])])
+    [Extension('networkx.addons.metis._metis',
+               ['networkx/addons/metis/_metis.pyx'],
+               include_dirs=['src/GKlib', 'src/libmetis'],
+               libraries=['metis', 'gklib'])])
 
 install_requires = ['networkx', 'decorator', 'six']
 
