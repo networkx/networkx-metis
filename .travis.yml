@@ -1,3 +1,5 @@
+sudo: false  # Now the build will be running on the new container based platform
+
 language: python
 
 python:
@@ -8,19 +10,18 @@ python:
   - "pypy"
   - "pypy3"
 
-before_install:
-
- - sudo apt-get update
- - sudo apt-get install build-essential
+addons:
+  apt:
+    sources:
+      - build-essential
 
 install:
  - pip install Cython
- - pip install https://github.com/networkx/networkx/archive/master.zip
  - pip install .
 
 script:
  - cd `mktemp -d`  # Navigate into a temporary directory to avoid loading the local code
- - nosetests networkx.addons.metis.tests.test_metis --nocapture --verbosity=2
+ - nosetests --verbosity=2 nxmetis.tests.test_metis
 
 notifications:
   email: false

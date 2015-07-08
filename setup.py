@@ -28,8 +28,7 @@ libraries = [
                'include_dirs': ['src/GKlib', 'src/libmetis']})]
 
 ext_modules = cythonize(
-    [Extension('networkx.addons.metis._metis',
-               ['networkx/addons/metis/_metis.pyx'],
+    [Extension('nxmetis._metis', ['nxmetis/_metis.pyx'],
                include_dirs=['src/GKlib', 'src/libmetis'],
                libraries=['metis', 'gklib'])])
 
@@ -59,11 +58,7 @@ if __name__ == "__main__":
                               'Programming Language :: Python :: 3.2',
                               'Programming Language :: Python :: 3.3',
                               'Programming Language :: Python :: 3.4',],
-        packages           = ['networkx',
-                              'networkx.addons',
-                              'networkx.addons.metis',
-                              'networkx.addons.metis.tests'],
-        namespace_packages = ['networkx.addons', 'networkx'],
+        packages           = ['nxmetis', 'nxmetis.tests'],
         libraries          = libraries,
         ext_modules        = ext_modules,
         install_requires   = install_requires,

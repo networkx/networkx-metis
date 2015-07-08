@@ -9,4 +9,4 @@ Contents:
    :maxdepth: 2
    
    legal
-   networkx.addons.metis
+   nxmetis

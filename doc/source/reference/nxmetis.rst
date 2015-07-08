@@ -2,13 +2,13 @@
 METIS Wrapper
 *************
 
-.. automodule:: networkx.addons.metis
+.. automodule:: nxmetis
 
 
 Metis
 -----
 
-.. automodule:: networkx.addons.metis.metis
+.. automodule:: nxmetis.metis
 .. autosummary::
    :toctree: generated/
 
@@ -20,7 +20,7 @@ Metis
 Enums
 -----
 
-.. automodule:: networkx.addons.metis.enums
+.. automodule:: nxmetis.enums
 .. autosummary::
    :toctree: generated/
 
@@ -36,7 +36,7 @@ Enums
 Types
 -----
 
-.. automodule:: networkx.addons.metis.types
+.. automodule:: nxmetis.types
 .. autosummary::
    :toctree: generated/
 
@@ -45,7 +45,7 @@ Types
 Exceptions
 ----------
 
-.. automodule:: networkx.addons.metis.exceptions
+.. automodule:: nxmetis.exceptions
 .. autosummary::
    :toctree: generated/
 

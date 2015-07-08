@@ -7,7 +7,7 @@ import os
 import sys
 import tempfile
 
-from networkx.addons.metis import exceptions
+from nxmetis import exceptions
 
 __all__ = ['part_graph', 'node_nd', 'compute_vertex_separator']
 
