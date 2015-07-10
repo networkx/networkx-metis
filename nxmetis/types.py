@@ -1,7 +1,7 @@
 import numbers
 
-from networkx.addons.metis import enums
-from networkx.addons.metis import _metis
+from nxmetis import enums
+from nxmetis import _metis
 
 __all__ = ['MetisOptions']
 

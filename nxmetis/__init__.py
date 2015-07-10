@@ -15,10 +15,10 @@ import sys
 import networkx as nx
 import six
 
-from networkx.addons.metis import enums
-from networkx.addons.metis import exceptions
-from networkx.addons.metis import _metis
-from networkx.addons.metis import types
+from nxmetis import enums
+from nxmetis import exceptions
+from nxmetis import _metis
+from nxmetis import types
 
 __all__ = ['node_nested_dissection', 'partition', 'vertex_separator',
            'MetisOptions']

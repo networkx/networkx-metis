@@ -1,9 +1,9 @@
 import itertools
 import nose.tools
 
-from networkx.addons.metis import exceptions
-from networkx.addons.metis import _metis
-from networkx.addons.metis import types
+from nxmetis import exceptions
+from nxmetis import _metis
+from nxmetis import types
 
 
 def make_cycle(n):

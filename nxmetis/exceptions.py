@@ -1,4 +1,4 @@
-from networkx.addons.metis import enums
+from nxmetis import enums
 __all__ = ['MetisError']
 
 
