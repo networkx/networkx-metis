@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# NetworkX-Metis documentation build configuration file, created by
+# NetworkX-METIS documentation build configuration file, created by
 # sphinx-quickstart on Thu Jun 25 14:08:46 2015.
 #
 # This file is execfile()d with the current directory set to its
@@ -55,7 +55,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'NetworkX-Metis'
+project = u'NetworkX-METIS'
 copyright = u'2015, NetworkX Developers'
 author = u'NetworkX Developers'
 
@@ -211,7 +211,7 @@ html_static_path = ['_static']
 #html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'NetworkX-Metisdoc'
+htmlhelp_basename = 'NetworkX-METISdoc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -233,7 +233,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'NetworkX-Metis.tex', u'NetworkX-Metis Documentation',
+  (master_doc, 'NetworkX-METIS.tex', u'NetworkX-METIS Documentation',
    u'NetworkX Developers', 'manual'),
 ]
 
@@ -263,7 +263,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'networkx-metis', u'NetworkX-Metis Documentation',
+    (master_doc, 'networkx-metis', u'NetworkX-METIS Documentation',
      [author], 1)
 ]
 
@@ -277,8 +277,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  (master_doc, 'NetworkX-Metis', u'NetworkX-Metis Documentation',
-   author, 'NetworkX-Metis', 'One line description of project.',
+  (master_doc, 'NetworkX-METIS', u'NetworkX-METIS Documentation',
+   author, 'NetworkX-METIS', 'One line description of project.',
    'Miscellaneous'),
 ]
 

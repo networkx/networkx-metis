@@ -5,7 +5,7 @@ METIS Wrapper
 .. automodule:: nxmetis
 
 
-Metis
+METIS
 -----
 
 .. automodule:: nxmetis.metis
