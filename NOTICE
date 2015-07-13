@@ -32,3 +32,16 @@ the code build for the use of external python wrappers :
  file : GKlib/string.c
  file : GKlib/gk_mkrandom.h
  file : GKlib/gk_proto.h
+ file : GKlib/error.c
+ file : GKlib/timers.c
+
+This project also depends upon the following files to help testing the software:
+
+* file : appveyor/install.ps1
+  "Sample script to install Python and pip under Windows"
+  Authors: Olivier Grisel and Kyle Kastner
+  License: BSD 3 clause
+
+* file : appveyor/run_with_env.cmd
+  Author: Olivier Grisel
+  License: BSD 3 clause
