@@ -3,10 +3,10 @@
 Overview
 ========
 
-NetworkX-Metis is an add-on for the python language software NetworkX which depends uses METIS for graph partitioning.
+NetworkX-METIS is an add-on for the python language software NetworkX which depends uses METIS for graph partitioning.
 
 
-Who uses NetworkX-Metis?
+Who uses NetworkX-METIS?
 ------------------
   
 Goals
@@ -27,7 +27,7 @@ http://www.python.org and the text by Alex Martelli [Martelli03]_.
 Free software
 -------------
 
-NetworkX-Metis is free software; you can redistribute it and/or
+NetworkX-METIS is free software; you can redistribute it and/or
 modify it under the terms of the :doc:`Apache License </reference/legal>`.
 We welcome contributions from the community.  Information on
 NetworkX development is found at the NetworkX Developer Zone at Github
@@ -37,7 +37,7 @@ https://github.com/networkx/networkx-metis
 History
 -------
 
-NetworkX-Metis was born in 2014. The original version of the wrapper was designed and written by Yingchong Situ.
+NetworkX-METIS was born in 2014. The original version of the wrapper was designed and written by Yingchong Situ.
 The first public release as an add-on for NetworkX was made after a Google Summer of Code 2015 project, Implementing Add-on system of NetworkX.
 
 

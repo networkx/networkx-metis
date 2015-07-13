@@ -2,7 +2,7 @@
 Installing
 **********
 
-Before installing NetworkX-Metis, you need to have
+Before installing NetworkX-METIS, you need to have
 `setuptools <https://pypi.python.org/pypi/setuptools>`_ ,
 `Cython <https://pypi.python.org/pypi/cython>`_ and
 `NetworkX <https://pypi.python.org/pypi/networkx>`_ installed.
@@ -10,7 +10,7 @@ Before installing NetworkX-Metis, you need to have
 Quick install
 =============
 
-Get NetworkX-Metis from the Python Package Index at
+Get NetworkX-METIS from the Python Package Index at
 http://pypi.python.org/pypi/networkx-metis
 
 or install it with
@@ -36,7 +36,7 @@ You can install from source by downloading a source archive file
 (tar.gz or zip) or by checking out the source files from the
 git source code repository.
 
-NetworkX-Metis needs a compiler to build the C library of METIS. For Linux/Mac OS, gcc
+NetworkX-METIS needs a compiler to build the C library of METIS. For Linux/Mac OS, gcc
 should be installed and for Windows OS, `mingw32 <http://www.mingw.org/>`_ must be installed.
 
 Source archive file
@@ -123,19 +123,19 @@ Requirements
 Python
 ------
 
-To use NetworkX-Metis you need Python 2.7, 3.2 or later.
+To use NetworkX-METIS you need Python 2.7, 3.2 or later.
 
 
 NetworkX
 --------
 
-To use NetworkX-Metis you need NetworkX 2.0 or later installed.
+To use NetworkX-METIS you need NetworkX 2.0 or later installed.
 
 
 Cython
 ------
 
-For NetworkX-Metis to work, you need Cython installed.
+For NetworkX-METIS to work, you need Cython installed.
 
 
 The easiest way to get Python and most optional packages is to install
