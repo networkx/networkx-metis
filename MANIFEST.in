@@ -1,8 +1,8 @@
 # Wrapper files
-graft networkx
+graft nxmetis
 
 # Build files
-exclude _metis.c
+exclude nxmetis/_metis.c
 
 # Documentaion and License files
 include LICENSE.txt
