@@ -50,7 +50,7 @@ if __name__ == "__main__":
         classifiers        = ['Development Status :: 5 - Production/Stable',
                               'Intended Audience :: Developers',
                               'Intended Audience :: Science/Research',
-                              'License :: OSI Approved :: Apache License Version 2',
+                              'License :: OSI Approved :: Apache Software License',
                               'Operating System :: OS Independent',
                               'Programming Language :: Python :: 2',
                               'Programming Language :: Python :: 2.7',
