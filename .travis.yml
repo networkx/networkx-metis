@@ -16,7 +16,8 @@ addons:
       - build-essential
 
 install:
- - pip install Cython
+ - pip install --upgrade pip
+ - pip install --install-option="--no-cython-compile" Cython 
  - pip install .
 
 script:
