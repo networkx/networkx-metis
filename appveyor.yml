@@ -14,33 +14,20 @@ environment:
       PYTHON_VERSION: "2.7.9"
       PYTHON_ARCH: "32"
 
-    - PYTHON: "C:\\Python27-x64"
-      PYTHON_VERSION: "2.7.9"
-      PYTHON_ARCH: "64"
-
     - PYTHON: "C:\\Python32"
       PYTHON_VERSION: "3.2.5"
       PYTHON_ARCH: "32"
-
-    - PYTHON: "C:\\Python32-x64"
-      PYTHON_VERSION: "3.2.5"
-      PYTHON_ARCH: "64"
 
     - PYTHON: "C:\\Python33"
       PYTHON_VERSION: "3.3.5"
       PYTHON_ARCH: "32"
 
-    - PYTHON: "C:\\Python33-x64"
-      PYTHON_VERSION: "3.3.5"
-      PYTHON_ARCH: "64"
-
     - PYTHON: "C:\\Python34"
       PYTHON_VERSION: "3.4.3"
       PYTHON_ARCH: "32"
 
-    - PYTHON: "C:\\Python34-x64"
-      PYTHON_VERSION: "3.4.3"
-      PYTHON_ARCH: "64"
+      # We are not running tests for x64 Arch on AppVeyor because of some technical issues
+      # in building the package. See https://github.com/networkx/networkx-metis/pull/47
 
 install:
   # Install Python (from the official .msi of http://python.org) and pip when
@@ -67,6 +54,3 @@ test_script:
   # installed library.
   - "pushd %TEMP%"
   - "nosetests -v nxmetis.tests.test_metis"
-
-  # Move back to the project folder
-  - "popd"
