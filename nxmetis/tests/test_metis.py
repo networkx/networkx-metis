@@ -47,7 +47,8 @@ class TestMetis(object):
         # This is to verify the continuity of the chain of nodes.
         parts = partition[1]  # List containing partitioned node lists
 
-        nose.tools.assert_equal(list(partition)[0], 4)
+        nose.tools.assert_equal(partition[0], 4)
+        nose.tools.assert_equal(len(partition[1]), 4)
 
         for part in parts:
             nose.tools.assert_not_equal(0, len(part))  # Non-empty set
@@ -63,7 +64,6 @@ class TestMetis(object):
         nose.tools.assert_equal(set(parts_combined), set(self.G))
 
     def test_vertex_separator(self):
-        bisection = nxmetis.vertex_separator(self.G)
         sep, part1, part2 = nxmetis.vertex_separator(self.G)
 
         # The two separator nodes must not be present in the
