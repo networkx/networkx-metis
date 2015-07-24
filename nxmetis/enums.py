@@ -116,11 +116,12 @@ class MetisDbgLvl(enum.IntEnum):
 @enum.unique
 class MetisRStatus(enum.IntEnum):
     """Return codes by METIS
-    ============ == ===============================================
-    ok            1 Returned normally
-    error_input  -2 Returned due to erroneous inputs and/or options
-    error_memory -3 Returned due to insufficient memory
-    error        -4 Some other errors
-    ============ == ===============================================
+
+        ============ ===============================================
+        ok           Returned normally
+        error_input  Returned due to erroneous inputs and/or options
+        error_memory Returned due to insufficient memory
+        error        Some other errors
+        ============ ===============================================
     """
     ok, error_input, error_memory, error = 1, -2, -3, -4
