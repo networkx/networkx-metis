@@ -8,7 +8,7 @@ METIS Wrapper
 METIS
 -----
 
-.. automodule:: nxmetis.metis
+.. automodule:: nxmetis
 .. autosummary::
    :toctree: generated/
 
