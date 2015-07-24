@@ -185,7 +185,7 @@ def partition(G, nparts, node_weight='weight', node_size='size',
         value: None.
 
     ubvec : list of floats, optional
-        The allowed load imbalance tolerance for each constraint. For the`i`th
+        The allowed load imbalance tolerance for each constraint. For the `i`th
         and the `j`th constraint, the allowed weight is the
         :samp:`ubvect[j] * tpwgts[i][j]` fraction of the `j`th constraint's
         total weight. The load imbalances must be greater 1.0.
