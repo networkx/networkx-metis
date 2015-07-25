@@ -175,23 +175,20 @@ def partition(G, nparts, node_weight='weight', node_size='size',
 
     tpwgts : list of lists of floats, optional
         The target weights of the partitions and the constraints. The target
-        weight of the `i`th partition and the `j`th constraint is given by
-        :samp:`tpwgts[i][j]` (the numbering for both partitions and
-        constraints starts from zero). For each constraint of the
-        :samp:`tpwgts[][]` entries must be 1.0 (i.e.,
-        `\sum_i \text{tpwgts}[i][j] = 1.0`)
-
-        If None, the graph is equally divided among the partitions. Default
-        value: None.
+        weight of the `i`-th partition and the `j`-th constraint is given by
+        ``tpwgts[i][j]`` (the numbering for both partitions and constraints
+        starts from zero). For each constraint the sum of the ``tpwgts[][]``
+        entries must be 1.0 (i.e., `\sum_i \\text{tpwgts}[i][j] = 1.0`). If
+        None, the graph is equally divided among the partitions. Default value:
+        None.
 
     ubvec : list of floats, optional
-        The allowed load imbalance tolerance for each constraint. For the `i`th
-        and the `j`th constraint, the allowed weight is the
-        :samp:`ubvect[j] * tpwgts[i][j]` fraction of the `j`th constraint's
-        total weight. The load imbalances must be greater 1.0.
-
-        If None, the load imbalance tolerance is 1.001 if there is exactly one
-        constraint or 1.01 if there are more. Default value: None.
+        The allowed load imbalance tolerance for each constraint. For the
+        `i`-th and the `j`-th constraint, the allowed weight is the
+        ``ubvec[j] * tpwgts[i][j]`` fraction of the `j`-th constraint's total
+        weight. The load imbalances must be greater than 1.0. If None, the load
+        imbalance tolerance is 1.001 if there is exactly one constraint or 1.01
+        if there are more. Default value: None.
 
     options : MetisOptions, optional.
         METIS options. If None, the default options are used. Default value:
