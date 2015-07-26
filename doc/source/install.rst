@@ -78,7 +78,7 @@ GitHub
 
   2. Change directory to :samp:`networkx-metis`
 
-  3. Ru 
+  3. Run
      ::
 
        python setup.py build
