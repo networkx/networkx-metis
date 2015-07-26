@@ -50,14 +50,16 @@ Source archive file
   2. Unpack and change directory to the source directory
      (it should have the setup.py on top level).
 
-  3. Run 
+  3. Run
      ::
 
        python setup.py build
+
      to build, and
      ::
 
        python setup.py install
+
      to install.
 
   4. (Optional) Run :samp:`nosetests` to execute the tests if you have
@@ -68,22 +70,24 @@ GitHub
 ------
 
   1. Clone the networkx-metis repostitory
-    ::
+     ::
 
        git clone https://github.com/networkx/networkx-metis.git
 
-  (see https://github.com/networkx/networkx-metis/ for other options)
+    (see https://github.com/networkx/networkx-metis/ for other options)
 
   2. Change directory to :samp:`networkx-metis`
 
-  3. Run 
+  3. Ru 
      ::
 
        python setup.py build
+
      to build, and
      ::
 
        python setup.py install
+
      to install.
 
   4. (Optional) Run :samp:`nosetests` to execute the tests if you have
