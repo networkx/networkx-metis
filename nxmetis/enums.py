@@ -6,152 +6,122 @@ __all__ = ['MetisPType', 'MetisObjType', 'MetisCType', 'MetisIPType',
 
 @enum.unique
 class MetisPType(enum.IntEnum):
-    """Partitioning method."""
+    """Partitioning method.
 
-    default = -1
-    """Default partitioning method."""
+        ==== =================================
+        rb   Multilevel recursive bisectioning
+        kway Multilevel `k`-way partitioning
+        ==== =================================
+    """
 
-    rb = 0
-    """Multilevel recursive bisectioning."""
-
-    kway = 1
-    """Multilevel `k`-way partitioning."""
+    default, rb, kway = range(-1, 2)
 
 
 @enum.unique
 class MetisObjType(enum.IntEnum):
-    """Type of objective."""
+    """Type of objective.
 
-    default = -1
-    """Default type of objective."""
+        === =======================================
+        cut Edge-cut minimization
+        vol Total communication volume minimization
+        === =======================================
+    """
 
-    cut = 0
-    """Edge-cut minimization."""
-
-    vol = 1
-    """Total communication volume minimization."""
+    default, cut, vol = range(-1, 2)
 
 
 @enum.unique
 class MetisCType(enum.IntEnum):
-    """Catching scheme to be used during coarsening."""
+    """Catching scheme to be used during coarsening.
 
-    default = -1
-    """Default catching scheme."""
+        ==== ==========================
+        rm   Random matching
+        shem Sorted heavy-edge matching
+        ==== ==========================
+    """
 
-    rm = 0
-    """Random matching."""
-
-    shem = 1
-    """Sorted heavy-edge matching."""
+    default, rm, shem = range(-1, 2)
 
 
 @enum.unique
 class MetisIPType(enum.IntEnum):
-    """Algorithm used during initial partitioning."""
+    """Algorithm used during initial partitioning.
 
-    default = -1
-    """Default method for initial partitioning."""
+        ====== ======================================================
+        grow   Grow a bisection using a greedy strategy
+        random Compute a bisection at random followed by a refinement
+        edge   Derive a separator from an edge cut
+        node   Grow a bisection using a greedy node-based strategy
+        ====== ======================================================
+    """
 
-    grow = 0
-    """Grow a bisection using a greedy strategy."""
-    
-    random = 1
-    """Compute a bisection at random followed by a refinement."""
-    
-    edge = 2
-    """Derive a separator from an edge cut."""
-    
-    node = 3
-    """Grow a bisection using a greedy node-based strategy."""
+    default, grow, random, edge, node = range(-1, 4)
 
 
 @enum.unique
 class MetisRType(enum.IntEnum):
-    """Algorithm used for refinement."""
+    """Algorithm used for refinement.
 
-    default = -1
-    """Default method used for refinement."""
+        ========= ======================================
+        fm        FM-based cut refinement
+        greedy    Greedy-based cut and volume refinement
+        sep2sided Two-sided node FM refinement
+        sep1sided One-sided node FM refinement
+        ========= ======================================
+    """
 
-    fm = 0
-    """FM-based cut refinement."""
-    
-    greedy = 1
-    """Greedy-based cut and volume refinement."""
-    
-    sep2sided = 2
-    """Two-sided node FM refinement."""
-    
-    sep1sided = 3
-    """One-sided node FM refinement."""
+    default, fm, greedy, sep2sided, sep1sided = range(-1, 4)
 
 
 @enum.unique
 class MetisNumbering(enum.IntEnum):
     """Numbering scheme is used for the adjacency structure of a graph or the
-    element-node structure of a mesh."""
+    element-node structure of a mesh.
 
-    default = -1
-    """Default numbering scheme."""
+        ==== =================================
+        zero C-style zero-based numbering
+        one  Fortran-style one-based numbering
+        ==== =================================
+    """
 
-    zero = 0
-    """C-style zero-based numbering."""
-
-    one = 1
-    """Fortran-style one-based numbering."""
+    default, zero, one = range(-1, 2)
 
 
 @enum.unique
 class MetisDbgLvl(enum.IntEnum):
     """Amount of progress/debugging information will be printed during the
-    execution of the algorithms. Can be combined by bit-wise OR."""
+    execution of the algorithms. Can be combined by bit-wise OR.
+
+        ========== ======================================================
+        info       Print various diagnostic messages
+        time       Perform timing analysis
+        coarsen    Display various statistics during coarsening
+        refine     Display various statistics during refinement
+        ipart      Display various statistics during initial partitioning
+        moveinfo   Display detailed information about vertex moves during
+                   refinement
+        sepinfo    Display information about vertex separators
+        conninfo   Display information related to the minimization of
+                   subdomain connectivity
+        contiginfo Display information related to the elimination of
+                   connected components
+        ========== ======================================================
+    """
 
     default = -1
-    """Display default statistics."""
-
-    info = 1
-    """Print various diagnostic messages."""
-
-    time = 2
-    """Perform timing analysis."""
-
-    coarsen = 4
-    """Display various statistics during coarsening."""
-
-    refine = 8
-    """Display various statistics during refinement."""
-
-    ipart = 16
-    """Display various statistics during initial partitioning."""
-
-    moveinfo = 32
-    """Display detailed information about vertex moves during
-    refinement."""
-
-    sepinfo = 64
-    """Display information about vertex separators."""
-
-    conninfo = 128
-    """Display information related to the minimization of
-    subdomain connectivity."""
-
-    contiginfo = 256
-    """Display information related to the elimination of
-    connected components."""
+    (info, time, coarsen, refine, ipart, moveinfo, sepinfo, conninfo,
+     contiginfo, memory) = [1 << x for x in list(range(9)) + [11]]
 
 
 @enum.unique
 class MetisRStatus(enum.IntEnum):
-    """Return codes by METIS."""
+    """Return codes by METIS
 
-    ok = 1
-    """Returned normally."""
-
-    error_input = -2
-    """Returned due to erroneous inputs and/or options."""
-    
-    error_memory = -3
-    """Returned due to insufficient memory."""
-    
-    error = -4
-    """Some other errors."""
+        ============ ===============================================
+        ok           Returned normally
+        error_input  Returned due to erroneous inputs and/or options
+        error_memory Returned due to insufficient memory
+        error        Some other errors
+        ============ ===============================================
+    """
+    ok, error_input, error_memory, error = 1, -2, -3, -4
