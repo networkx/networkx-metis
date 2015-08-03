@@ -7,7 +7,7 @@ __all__ = ['MetisOptions']
 
 
 class MetisOptions(object):
-    """Options controlling behaviors of METIS algorithms"""
+    """Options controlling behaviors of METIS algorithms."""
 
     def __init__(self, **kwargs):
         """Initializes a MetisOptions object. Values can be provided
@@ -25,7 +25,7 @@ class MetisOptions(object):
 
     @property
     def ptype(self):
-        """Types of Partitioning method
+        """Types of Partitioning method.
 
             ==== =================================
             rb   Multilevel recursive bisectioning
@@ -104,7 +104,7 @@ class MetisOptions(object):
 
     @property
     def ncuts(self):
-        """Number of cuts"""
+        """Number of cuts."""
         return self._ncuts
 
     @ncuts.setter
@@ -115,7 +115,7 @@ class MetisOptions(object):
 
     @property
     def nseps(self):
-        """Number of separators"""
+        """Number of separators."""
         return self._nseps
 
     @nseps.setter
@@ -142,7 +142,7 @@ class MetisOptions(object):
 
     @property
     def niter(self):
-        """Number of refinement iterations"""
+        """Number of refinement iterations."""
         return self._niter
 
     @niter.setter
@@ -153,7 +153,7 @@ class MetisOptions(object):
 
     @property
     def seed(self):
-        """Random number seed"""
+        """Random number seed."""
         return self._seed
 
     @seed.setter
@@ -164,7 +164,7 @@ class MetisOptions(object):
 
     @property
     def minconn(self):
-        """Number of mimimum connectivity"""
+        """Number of mimimum connectivity."""
         return self._minconn
 
     @minconn.setter
@@ -173,7 +173,7 @@ class MetisOptions(object):
 
     @property
     def no2hop(self):
-        """A boolean to perform a 2-hop matching"""
+        """A boolean to perform a 2-hop matching."""
         return self._no2hop
 
     @no2hop.setter
@@ -182,7 +182,7 @@ class MetisOptions(object):
 
     @property
     def contig(self):
-        """A boolean to create contigous partitions"""
+        """A boolean to create contigous partitions."""
         return self._contig
 
     @contig.setter
@@ -191,7 +191,7 @@ class MetisOptions(object):
 
     @property
     def compress(self):
-        """A boolean to compress graph prior to ordering"""
+        """A boolean to compress graph prior to ordering."""
         return self._compress
 
     @compress.setter
@@ -200,7 +200,7 @@ class MetisOptions(object):
 
     @property
     def ccorder(self):
-        """A boolean to detect & order connected components separately"""
+        """A boolean to detect & order connected components separately."""
         return self._ccorder
 
     @ccorder.setter
@@ -209,7 +209,7 @@ class MetisOptions(object):
 
     @property
     def pfactor(self):
-        """Prunning factor for high degree vertices"""
+        """Prunning factor for high degree vertices."""
         return self._pfactor
 
     @pfactor.setter
@@ -220,7 +220,7 @@ class MetisOptions(object):
 
     @property
     def ufactor(self):
-        """User-supplied ufactor"""
+        """User-supplied ufactor."""
         return self._ufactor
 
     @ufactor.setter
