@@ -55,7 +55,7 @@ class MetisOptions(object):
 
     @property
     def ctype(self):
-        """Catching scheme to be used during coarsening.
+        """Matching scheme to be used during coarsening.
 
             ==== ==========================
             rm   Random matching
