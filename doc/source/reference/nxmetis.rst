@@ -2,20 +2,17 @@
 METIS Wrapper
 *************
 
-.. automodule:: nxmetis
-
 
 METIS
 -----
 
-.. automodule:: nxmetis.metis
+.. automodule:: nxmetis
 .. autosummary::
    :toctree: generated/
 
    node_nested_dissection
    partition
    vertex_separator
-   MetisOptions
 
 Enums
 -----
@@ -32,7 +29,6 @@ Enums
    MetisRType
    MetisNumbering
    MetisDbgLvl
-   MetisRStatus
 
 Types
 -----
@@ -42,12 +38,3 @@ Types
    :toctree: generated/
 
    MetisOptions
-
-Exceptions
-----------
-
-.. automodule:: nxmetis.exceptions
-.. autosummary::
-   :toctree: generated/
-
-   MetisError

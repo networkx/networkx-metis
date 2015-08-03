@@ -33,6 +33,7 @@ extensions = [
     'sphinx.ext.autosummary',
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
+    'sphinx.ext.mathjax',
     'sphinx.ext.intersphinx',
     'sphinx.ext.viewcode',
 ]
@@ -297,3 +298,7 @@ texinfo_documents = [
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'https://docs.python.org/': None}
+
+default_role = 'math'
+# Load MathJax into the webpage by including its main JavaScript file into the page
+mathjax_path = 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML'
