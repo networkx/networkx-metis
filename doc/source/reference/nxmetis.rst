@@ -22,6 +22,7 @@ Enums
 
 .. automodule:: nxmetis.enums
 .. autosummary::
+   :template: enum.rst
    :toctree: generated/
 
    MetisPType
