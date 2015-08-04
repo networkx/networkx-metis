@@ -1,7 +1,7 @@
 import numbers
 
 from nxmetis import enums
-from nxmetis import _metis
+from nxmetis import metis
 
 __all__ = ['MetisOptions']
 
@@ -18,7 +18,7 @@ class MetisOptions(object):
         >>> options = MetisOptions(ncuts=2, niter=100)
 
         """
-        _metis.set_default_options(self)
+        metis.set_default_options(self)
         for key, value in kwargs.items():
             if value is not None:
                 setattr(self, key, value)
