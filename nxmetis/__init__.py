@@ -17,7 +17,7 @@ import six
 
 from nxmetis import enums
 from nxmetis import exceptions
-from nxmetis import _metis
+from nxmetis import metis
 from nxmetis import types
 
 __all__ = ['node_nested_dissection', 'partition', 'vertex_separator',
@@ -134,7 +134,7 @@ def node_nested_dissection(G, weight='weight', options=None):
     xadj, adjncy = _convert_graph(G)
 
     with _zero_numbering(options):
-        perm = _metis.node_nd(xadj, adjncy, vwgt, options)[0]
+        perm = metis.node_nd(xadj, adjncy, vwgt, options)[0]
 
     nodes = list(G)
     perm = [nodes[i] for i in perm]
@@ -252,7 +252,7 @@ def partition(G, nparts, node_weight='weight', node_size='size',
         tpwgts = list(itertools.chain.from_iterable(tpwgts))
 
     with _zero_numbering(options):
-        objval, part = _metis.part_graph(xadj, adjncy, nparts, vwgt, vsize,
+        objval, part = metis.part_graph(xadj, adjncy, nparts, vwgt, vsize,
                                          adjwgt, tpwgts, ubvec, options,
                                          recursive)
 
@@ -305,7 +305,7 @@ def vertex_separator(G, weight='weight', options=None):
     xadj, adjncy = _convert_graph(G)
 
     with _zero_numbering(options):
-        part = _metis.compute_vertex_separator(xadj, adjncy, vwgt, options)[1]
+        part = metis.compute_vertex_separator(xadj, adjncy, vwgt, options)[1]
 
     groups = [[], [], []]
     for u, i in zip(G, part):

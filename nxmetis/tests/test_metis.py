@@ -5,7 +5,7 @@ import networkx as nx
 
 import nxmetis
 from nxmetis import exceptions
-from nxmetis import _metis
+from nxmetis import metis
 from nxmetis import types
 
 
@@ -102,5 +102,5 @@ class TestMetis(object):
         options = types.MetisOptions(niter=-2)
         nose.tools.assert_raises_regexp(exceptions.MetisError,
                                         'Input Error: Incorrect niter.',
-                                        _metis.part_graph, xadj, adjncy, 2,
+                                        metis.part_graph, xadj, adjncy, 2,
                                         options=options)
