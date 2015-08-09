@@ -1,6 +1,7 @@
 *.pyc
 __pycache__
 *~
+.DS_Store
 
 build/*
 dist/*
@@ -13,7 +14,8 @@ nxmetis/_metis.*.so
 nxmetis/_metis.c
 
 # Sphinx documentation
-docs/build/
+doc/build/
+doc/source/reference/generated/
 
 # Sublime Text project files
 *.sublime-project
