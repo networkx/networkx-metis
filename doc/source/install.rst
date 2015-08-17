@@ -36,8 +36,11 @@ You can install from source by downloading a source archive file
 (tar.gz or zip) or by checking out the source files from the
 git source code repository.
 
-NetworkX-METIS needs a compiler to build the C library of METIS. For Linux/Mac OS, gcc
-should be installed and for Windows OS, `mingw32 <http://www.mingw.org/>`_ must be installed.
+Installation on Windows is largely the same as on Linux/Mac except that
+no "platform compiler" is pre-installed. So, an extra ``--compiler`` flag
+may be necessary to specify a compiler. A simple guide for installing
+and setting up the compiler is available
+`here <https://github.com/cython/cython/wiki/CythonExtensionsOnWindows>`_.
 
 Source archive file
 -------------------
