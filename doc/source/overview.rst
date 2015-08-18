@@ -5,29 +5,14 @@ Overview
 
 NetworkX-METIS is an add-on for the `NetworkX`_ python package using `METIS`_ for graph partitioning.
 
+NetworkX is a Python package for the creation, manipulation and study of the structure, dynamics, and functions of complex networkx. METIS is a C library written for partitioning graphs, partitioning finite element meshes, and producing fill reducing orderings for sparse matrices. NetworkX-METIS uses Cython to wrap the METIS library to make it available in Python.
 
-Who uses NetworkX-METIS?
-------------------------
-
-Goals
------
-
-The Python programming language
--------------------------------
-
-Python is a powerful programming language that allows simple and flexible representations of networks, and  clear and concise expressions of network algorithms (and other algorithms too).  Python has a vibrant and growing ecosystem of packages that NetworkX uses to provide more features such as numerical linear algebra and drawing.  In addition
-Python is also an excellent "glue" language for putting together pieces of software from other languages which allows reuse of legacy code and engineering of high-performance algorithms [Langtangen04]_.
-
-Equally important, Python is free, well-supported, and a joy to use.
-
-In order to make the most out of NetworkX-METIS you will want to know how to write basic programs in Python. Among the many guides to Python, we recommend the documentation at
-http://www.python.org and the text by Alex Martelli [Martelli03]_.
 
 Free software
 -------------
 
 NetworkX-METIS is free software; you can redistribute it and/or
-modify it under the terms of the :doc:`Apache License </reference/legal>`.
+modify it under the terms of the :doc:`Apache License </reference/legal>`_.
 We welcome contributions from the community.  Information on
 NetworkX development is found at the NetworkX Developer Zone at Github
 https://github.com/networkx/networkx-metis
