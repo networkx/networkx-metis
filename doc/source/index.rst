@@ -15,6 +15,7 @@ Contents:
    download
    install
    reference/index
+   bibliography
 
 Indices and tables
 ==================
