@@ -3,11 +3,9 @@ sudo: false  # Now the build will be running on the new container based platform
 language: python
 
 python:
-  - 2.7
-  - 3.2
-  - 3.3
-  - 3.4
-  - "pypy"
+  - 3.6
+  - 3.7
+  - 3.8
   - "pypy3"
 
 cache:

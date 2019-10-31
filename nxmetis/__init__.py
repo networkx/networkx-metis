@@ -127,7 +127,7 @@ def node_nested_dissection(G, weight='weight', options=None):
     if len(G) == 0:
         return []
 
-    vwgt = [G.node[u].get(weight, 1) for u in G]
+    vwgt = [G.nodes[u].get(weight, 1) for u in G]
     if all(w == 1 for w in vwgt):
         vwgt = None
 
@@ -227,11 +227,11 @@ def partition(G, nparts, node_weight='weight', node_size='size',
 
     xadj, adjncy = _convert_graph(G)
 
-    vwgt = [G.node[u].get(node_weight, 1) for u in G]
+    vwgt = [G.nodes[u].get(node_weight, 1) for u in G]
     if all(w == 1 for w in vwgt):
         vwgt = None
 
-    vsize = [G.node[u].get(node_size, 1) for u in G]
+    vsize = [G.nodes[u].get(node_size, 1) for u in G]
     if all(w == 1 for w in vsize):
         vsize = None
 
@@ -298,7 +298,7 @@ def vertex_separator(G, weight='weight', options=None):
     if len(G) == 0:
         return [], [], []
 
-    vwgt = [G.node[u].get(weight, 1) for u in G]
+    vwgt = [G.nodes[u].get(weight, 1) for u in G]
     if all(w == 1 for w in vwgt):
         vwgt = None
 

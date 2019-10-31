@@ -24,7 +24,7 @@ class TestMetis(object):
         self.node_list = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
                           1, 2, 3, 4, 5, 6]
         self.G = nx.Graph()
-        self.G.add_path(self.node_list)
+        nx.add_path(self.G,self.node_list)
         self.G.add_edge(self.node_list[-1], self.node_list[0])
 
     def test_node_nested_dissection_unweighted(self):
