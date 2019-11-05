@@ -91,8 +91,7 @@ def _convert_exceptions(convert_type, catch_types=None):
     return _convert_exceptions
 
 
-@nx.utils.not_implemented_for('directed')
-@nx.utils.not_implemented_for('multigraph')
+@nx.utils.not_implemented_for('directed', 'multigraph')
 @_convert_exceptions(
     nx.NetworkXError, (ValueError, TypeError, exceptions.MetisError))
 def node_nested_dissection(G, weight='weight', options=None):
@@ -142,8 +141,7 @@ def node_nested_dissection(G, weight='weight', options=None):
     return perm
 
 
-@nx.utils.not_implemented_for('directed')
-@nx.utils.not_implemented_for('multigraph')
+@nx.utils.not_implemented_for('directed', 'multigraph')
 @_convert_exceptions(
     nx.NetworkXError, (ValueError, TypeError, exceptions.MetisError))
 def partition(G, nparts, node_weight='weight', node_size='size',
@@ -263,8 +261,7 @@ def partition(G, nparts, node_weight='weight', node_size='size',
     return objval, parts
 
 
-@nx.utils.not_implemented_for('directed')
-@nx.utils.not_implemented_for('multigraph')
+@nx.utils.not_implemented_for('directed', 'multigraph')
 @_convert_exceptions(
     nx.NetworkXError, (ValueError, TypeError, exceptions.MetisError))
 def vertex_separator(G, weight='weight', options=None):
