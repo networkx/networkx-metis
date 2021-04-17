@@ -72,7 +72,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        python-version: [3.7, 3.8, 3.9]
+        python-version: [3.4, 3.5, 3.6, 3.7, 3.8, 3.9]
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
@@ -80,17 +80,12 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
-    - name: Before install
-      run: |
-        python -m venv venv
-        venv\Scripts\Activate.ps1
-
     - name: Install packages
       run: |
-        pip install --upgrade pip wheel setuptools
-        pip install -r requirements\default.txt
-        pip install -r requirements\test.txt
-        python setup.py build --compiler=msvc
+        python -m pip install --upgrade pip wheel setuptools
+        python -m pip install -r requirements\default.txt
+        python -m pip install -r requirements\test.txt
+        python setup.py build_ext --compiler=msvc
         python setup.py install
         pip list
 
