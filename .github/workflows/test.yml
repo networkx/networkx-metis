@@ -1,0 +1,99 @@
+name: test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  ubuntu:
+    runs-on: Ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7, 3.8, 3.9]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Before install
+      run: |
+        python3 -m venv ~/venv
+        source ~/venv/bin/activate
+
+    - name: Install packages
+      run: |
+        pip install --upgrade pip wheel setuptools
+        pip install -r requirements/default.txt
+        pip install -r requirements/test.txt
+        pip install .
+        pip list
+
+    - name: Test
+      run: |
+        cd `mktemp -d`
+        nosetests --verbosity=2 nxmetis.tests.test_metis
+
+  macos:
+    runs-on: macOS-latest
+    strategy:
+      matrix:
+        python-version: [3.7, 3.8, 3.9]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Before install
+      run: |
+        python3 -m venv ~/venv
+        source ~/venv/bin/activate
+
+    - name: Install packages
+      run: |
+        pip install --upgrade pip wheel setuptools
+        pip install -r requirements/default.txt
+        pip install -r requirements/test.txt
+        pip install .
+        pip list
+
+    - name: Test
+      run: |
+        cd `mktemp -d`
+        nosetests --verbosity=2 nxmetis.tests.test_metis
+
+  windows:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        python-version: [3.7, 3.8, 3.9]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Before install
+      run: |
+        python -m venv venv
+        venv\Scripts\Activate.ps1
+
+    - name: Install packages
+      run: |
+        pip install --upgrade pip wheel setuptools
+        pip install -r requirements\default.txt
+        pip install -r requirements\test.txt
+        pip install .
+        pip list
+
+    - name: Test
+      run: |
+        cd `mktemp -d`
+        nosetests --verbosity=2 nxmetis.tests.test_metis
