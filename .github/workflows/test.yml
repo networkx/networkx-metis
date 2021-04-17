@@ -90,10 +90,12 @@ jobs:
         pip install --upgrade pip wheel setuptools
         pip install -r requirements\default.txt
         pip install -r requirements\test.txt
-        pip install .
+        python setup.py build --compiler=msvc
+        python setup.py install
         pip list
 
     - name: Test
       run: |
-        cd `mktemp -d`
+        $TempDir = [System.IO.Path]::GetTempPath()
+        cd $TempDir
         nosetests --verbosity=2 nxmetis.tests.test_metis
