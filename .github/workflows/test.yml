@@ -69,10 +69,10 @@ jobs:
         nosetests --verbosity=2 nxmetis.tests.test_metis
 
   windows:
-    runs-on: windows-latest
+    runs-on: windows-2016
     strategy:
       matrix:
-        python-version: [2.7, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9]
+        python-version: [2.7, 3.5, 3.7]
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
