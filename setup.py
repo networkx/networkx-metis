@@ -41,7 +41,7 @@ if __name__ == "__main__":
 
     setup(
         name               = 'networkx-metis',
-        version            = '1.0',
+        version            = '1.1rc1.dev0',
         maintainer         = 'NetworkX Developers',
         maintainer_email   = 'networkx-discuss@googlegroups.com',
         description        = 'NetworkX Addon to allow graph partitioning with METIS',
