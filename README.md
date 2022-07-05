@@ -1,3 +1,6 @@
+### NOTE: NetworkX-METIS isn't maintained actively, there won't be any new releases anytime soon. Please open an issue if you are interested in helping with maintaining this project.
+
+
 # NetworkX-METIS
 
 [![Build Status](https://travis-ci.org/networkx/networkx-metis.svg?branch=master)](https://travis-ci.org/networkx/networkx-metis)
