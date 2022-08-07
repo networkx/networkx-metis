@@ -51,6 +51,18 @@ def _convert_graph(G):
         xadj.append(len(adjncy))
     return xadj, adjncy
 
+def _convert_multi_graph(G):
+    """Convert a MultiGraph to the numbered adjacency list structure expected by
+    METIS.
+    """
+    index = dict(zip(G, list(range(len(G)))))
+    xadj = [0]
+    adjncy = []
+    for u in G:
+        for v in G[u]:
+            adjncy.extend(index[v] for h in dict(G[u])[v])
+        xadj.append(len(adjncy))
+    return xadj, adjncy
 
 def _convert_exceptions(convert_type, catch_types=None):
     """Decorator to convert types of exceptions
@@ -92,7 +104,6 @@ def _convert_exceptions(convert_type, catch_types=None):
 
 
 @nx.utils.not_implemented_for('directed')
-@nx.utils.not_implemented_for('multigraph')
 @_convert_exceptions(
     nx.NetworkXError, (ValueError, TypeError, exceptions.MetisError))
 def node_nested_dissection(G, weight='weight', options=None):
@@ -131,7 +142,10 @@ def node_nested_dissection(G, weight='weight', options=None):
     if all(w == 1 for w in vwgt):
         vwgt = None
 
-    xadj, adjncy = _convert_graph(G)
+    if(isinstance(G,nx.MultiGraph)):
+        xadj, adjncy = _convert_multi_graph(G)
+    else:
+        xadj, adjncy = _convert_graph(G)
 
     with _zero_numbering(options):
         perm = metis.node_nd(xadj, adjncy, vwgt, options)[0]
@@ -143,7 +157,6 @@ def node_nested_dissection(G, weight='weight', options=None):
 
 
 @nx.utils.not_implemented_for('directed')
-@nx.utils.not_implemented_for('multigraph')
 @_convert_exceptions(
     nx.NetworkXError, (ValueError, TypeError, exceptions.MetisError))
 def partition(G, nparts, node_weight='weight', node_size='size',
@@ -225,7 +238,10 @@ def partition(G, nparts, node_weight='weight', node_size='size',
     if len(G) == 0:
         return 0, [[] for i in range(nparts)]
 
-    xadj, adjncy = _convert_graph(G)
+    if(isinstance(G,nx.MultiGraph)):
+        xadj, adjncy = _convert_multi_graph(G)
+    else:
+        xadj, adjncy = _convert_graph(G)
 
     vwgt = [G.nodes[u].get(node_weight, 1) for u in G]
     if all(w == 1 for w in vwgt):
@@ -264,7 +280,6 @@ def partition(G, nparts, node_weight='weight', node_size='size',
 
 
 @nx.utils.not_implemented_for('directed')
-@nx.utils.not_implemented_for('multigraph')
 @_convert_exceptions(
     nx.NetworkXError, (ValueError, TypeError, exceptions.MetisError))
 def vertex_separator(G, weight='weight', options=None):
