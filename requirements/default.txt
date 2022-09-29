@@ -1,5 +1,5 @@
-Cython>=0.29
-networkx>=2.5
-decorator==4.4.2
-six>=1.15
-enum34>=1.1.10
+Cython
+networkx
+decorator
+six
+enum34
